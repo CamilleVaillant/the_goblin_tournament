@@ -1,4 +1,5 @@
 @use "./../abstract/variable" as var;
+@use "./../abstract/mixin.scss" as m; 
 
 
 // PAGE ACCUEUIL /////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -34,6 +35,39 @@
 
 // PAGE TOURNOIS /////////////////////////////////////////////////////////////////////////////////////////////////////
 #mainTournois{
-    background-color: var.$background-color;
-    height: 80vh;
+    background-color: #D6BBA0;
+    background-image: url("https://www.transparenttextures.com/patterns/low-contrast-linen.png");
+    article{
+        margin:1rem 0;
+        // @include m.flex;
+        width: 75vw;
+        height: 200px;
+        
+    
+        >div{
+            @include m.flex(row,space-around);
+            width: 100%;
+            height: 100%;
+            
+    
+            .main_article{
+                width: 75%;
+            }
+    
+            img{
+                width: 25%;
+                height: 100%;
+                object-fit: cover;
+            }
+        }
+    
+        .btn_bloc{
+            @include m.flex(row,margin-left);
+    
+            a,button{
+                margin-right:1rem;
+                
+            }
+        }
+    }
 }

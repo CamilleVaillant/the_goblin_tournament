@@ -4,6 +4,43 @@
 
 {% block main %}
     <main id="mainTournois">
+
+        <h2> {{ isModification ? 'Modifier un tournoi' :  'Ajouter un tournoi' }}</h2>
+        {{form_start(tournamentForm)}}
+            {{form_widget(tournamentForm)}}
+            <button>{{ isModification ? 'Modifier' :  'Ajouter'}}</button>
+        {{form_end(tournamentForm)}}
+
+     
+
+
+        <h2>Tournois :</h2>
+            {% for tournament in tournament %}
+                <article>
+                    <div>
+                        <div class="main_article">
+                            <h3>{{tournament.name}}</h3>
+                            <p><strong>Crée le : </strong>{{tournament.date|date('d/m/y')}}</p>
+                            <p><strong>Nombre de Gobelin : </strong>{{tournament.nbrParticipant}}</p>
+                            <p><strong>Etat : </strong>{{tournament.etat}}</p>
+                            <p><strong>Style : </strong>{{tournament.type.name}}</p>
+                            <p><strong>Résultat : </strong>{{tournament.result}}</p>
+
+                            <div class="btn_bloc">
+                                <a href={{path('modify_tournaments',{'id':tournament.id})}}>modifier</a>
+                                <form method="POST" onsubmit="return confirm('Confirmer la suppression?')" action="{{ path('delete_tournament',{'id': tournament.id})}}">
+                                    <input type="hidden" name="_method" value="delete">
+                                    <input type="hidden" name="_token" value="{{csrf_token('SUP' ~ tournament.id)}}">
+                                    <button class="btn_suppr">Supprimer</button>
+                                </form>
+                            </div>
+                        </div>
+
+                        <img src={{asset('images/images/' ~ tournament.imageName )}} alt="image du tournoi">
+                    </div>
+                </article>
+            {% endfor %}
+       
     
     </main>
 {% endblock %}
