@@ -54,9 +54,16 @@ class Tournament
     #[ORM\ManyToMany(targetEntity: User::class, inversedBy: 'tournaments')]
     private Collection $user;
 
+    /**
+     * @var Collection<int, User>
+     */
+    #[ORM\ManyToMany(targetEntity: User::class, mappedBy: 'tournament')]
+    private Collection $users;
+
     public function __construct()
     {
         $this->user = new ArrayCollection();
+        $this->users = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -182,5 +189,12 @@ class Tournament
     public function getImageName(): ?string
     {
         return $this->imageName;
+    }
+    /**
+     * @return Collection<int, User>
+     */
+    public function getUsers(): Collection
+    {
+        return $this->users;
     }
 }

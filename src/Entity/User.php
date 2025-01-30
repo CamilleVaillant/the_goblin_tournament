@@ -36,18 +36,15 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 255)]
     private ?string $pseudo = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $role = null;
-
     /**
      * @var Collection<int, Tournament>
      */
-    #[ORM\ManyToMany(targetEntity: Tournament::class, mappedBy: 'user')]
-    private Collection $tournaments;
+    #[ORM\ManyToMany(targetEntity: Tournament::class, inversedBy: 'users')]
+    private Collection $tournament;
 
     public function __construct()
     {
-        $this->tournaments = new ArrayCollection();
+        $this->tournament = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -79,6 +76,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     /**
      * @see UserInterface
+     *
      * @return list<string>
      */
     public function getRoles(): array
@@ -136,31 +134,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getRole(): ?string
-    {
-        return $this->role;
-    }
-
-    public function setRole(string $role): static
-    {
-        $this->role = $role;
-
-        return $this;
-    }
-
     /**
      * @return Collection<int, Tournament>
      */
-    public function getTournaments(): Collection
+    public function getTournament(): Collection
     {
-        return $this->tournaments;
+        return $this->tournament;
     }
 
     public function addTournament(Tournament $tournament): static
     {
-        if (!$this->tournaments->contains($tournament)) {
-            $this->tournaments->add($tournament);
-            $tournament->addUser($this);
+        if (!$this->tournament->contains($tournament)) {
+            $this->tournament->add($tournament);
         }
 
         return $this;
@@ -168,9 +153,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function removeTournament(Tournament $tournament): static
     {
-        if ($this->tournaments->removeElement($tournament)) {
-            $tournament->removeUser($this);
-        }
+        $this->tournament->removeElement($tournament);
 
         return $this;
     }

@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Inscription{% endblock %}
+
+{% block main %}
+    <main id="mainRegister">
+        <h1>S'incrire</h1>
+
+        {{form_start(userForm)}}
+            {{ form_row(userForm.name, {"label": "Entrez votre nom :",})}}
+            {{ form_row(userForm.password)}}
+            {{ form_row(userForm.pseudo, {"label": "Choisisez un pseudonyme :",})}}
+            {{form_widget(userForm)}}
+	    
+            <button>Créer mon compte</button>
+        {{form_end(userForm)}}
+
+        <p>Vous avez déjà un compte ? </p>
+        <a href="{{ path("app_login") }}">Connectez vous</a>
+    </main>
+{% endblock %}
