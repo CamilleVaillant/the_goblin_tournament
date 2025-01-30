@@ -13,10 +13,16 @@
                     <ul>
                         <li><a class="{% if app.request.attributes.get('_route') == "app_home" %} active {% endif %}" href="{{ path("app_home") }}">Accueil</a></li>
                         <li><a class="{% if app.request.attributes.get('_route') == "app_tournaments" %} active {% endif %}" href="{{ path("app_tournaments") }}">Les tournois</a></li>
-                        {# <li><a class="{% if app.request.attributes.get('_route') == "app_admin_panel" %} active {% endif %}" href="{{ path("app_admin_panel") }}">Panel Admin</a></li>
-                        <li><a class="{% if app.request.attributes.get('_route') == "app_login" %} active {% endif %}" href="{{ path("app_login") }}">Connexion</a></li>
-                        <li><a class="{% if app.request.attributes.get('_route') == "app_register" %} active {% endif %}" href="{{ path("app_register") }}">Inscription</a></li>
-                        <li><a class="{% if app.request.attributes.get('_route') == "app_logout" %} active {% endif %}" href="{{ path("app_logout") }}">Deconnection</a></li> #}
+                        {# <li><a class="{% if app.request.attributes.get('_route') == "app_admin_panel" %} active {% endif %}" href="{{ path("app_admin_panel") }}">Panel Admin</a></li> #}
+                        {% if is_granted("ROLE_USER") %}
+                            {% if is_granted("ROLE_ADMIN") %}
+                                {# <li><a href="{{ path("app_admin") }}">Admin</a></li> #}
+                            {% endif %}
+                            <li><a href="{{ path("app_logout") }}">Déconnexion</a></li>
+                            {% else %}
+                            <li><a class="{% if app.request.attributes.get('_route') == 'app_login' %}active{% endif %}"href="{{ path("app_login") }}">Connexion</a></li>
+                            <li><a class="{% if app.request.attributes.get('_route') == 'app_register' %}active{% endif %}"href="{{ path("app_register") }}">Inscription</a></li>
+                        {% endif %}
                     </ul>
                 </nav>
             </header>

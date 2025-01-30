@@ -12,6 +12,11 @@ header{
                 padding: 8px 32px;
                 a{
                     color: white;
+                    cursor: pointer;
+                    transition: 0.2s;
+                    &:hover{
+                        color: var.$primary-color;
+                    }
                 }
                 .active{
                     color: var.$primary-color;

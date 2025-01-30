@@ -37,3 +37,148 @@
     background-color: var.$background-color;
     height: 80vh;
 }
+
+// PAGE LOGIN /////////////////////////////////////////////////////////////////////////////////////////////////////
+#mainLogin{
+    background-color: #D6BBA0;
+    background-image: url("https://www.transparenttextures.com/patterns/low-contrast-linen.png");
+    h1{
+        padding-top: 96px;
+        text-align: center;
+        font-size: 72px;
+        padding-bottom: 32px;
+    }
+    form{
+        width: 60%;
+        margin: auto;
+        display: flex;
+        flex-direction: column;
+        label{
+            font-size: 20px;
+            padding: 8px 128px;
+            text-align: center;
+        }
+        input{
+            text-align: center;
+            padding: 4px 16px;
+            margin: 0px 128px;
+            border-radius: 4px;
+            border: solid 2px black;
+            font-family: Alice;
+            font-size: 18px;
+        }
+        button{
+            font-size: 20px;
+            font-family: Medieval;
+            cursor: pointer;
+            width: 50%;
+            margin: auto;
+            margin-top: 32px;
+            padding: 8px 16px;
+            border-radius: 4px;
+            border: solid 2px black;
+            color: var.$primary-color;
+            font-weight: bold;
+            letter-spacing: 1px;
+            transition: 0.2s;
+            &:hover{
+                background-color: var.$primary-color;
+                color: white;
+            }
+        }
+    }
+    >p{
+        color: black;
+        text-align: center;
+        margin-top: 32px;
+        display: block;
+    }
+    >a{
+        display: block;
+        margin-top: 8px;
+        text-align: center;
+        width: 200px;
+        margin-left: 50%;
+        transform: translateX(-50%);
+        transition: 0.2s;
+        text-decoration: underline;
+        &:hover{
+            color: var.$secondary-color;
+        }
+    }
+}
+
+// PAGE REGISTER /////////////////////////////////////////////////////////////////////////////////////////////////////
+#mainRegister{
+    background-color: #D6BBA0;
+    background-image: url("https://www.transparenttextures.com/patterns/low-contrast-linen.png");
+    h1{
+        padding: 96px;
+        text-align: center;
+        font-size: 72px;
+        padding-bottom: 32px;
+    }
+    form{
+        width: 60%;
+        margin: auto;
+        display: flex;
+        flex-direction: column;
+        div{
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            label{
+                font-size: 20px;
+                padding: 8px 128px;
+                text-align: center;
+            }
+            input{
+                text-align: center;
+                padding: 4px 16px;
+                margin: 0px 128px;
+                border-radius: 4px;
+                border: solid 2px black;
+                font-family: Alice;
+                font-size: 18px;
+            }
+        }
+        button{
+            font-size: 20px;
+            font-family: Medieval;
+            cursor: pointer;
+            width: 50%;
+            margin: auto;
+            margin-top: 32px;
+            padding: 8px 16px;
+            border-radius: 4px;
+            border: solid 2px black;
+            color: var.$primary-color;
+            font-weight: bold;
+            letter-spacing: 1px;
+            transition: 0.2s;
+            &:hover{
+                background-color: var.$primary-color;
+                color: white;
+            }
+        }
+    }
+    >p{
+        color: black;
+        text-align: center;
+        margin-top: 32px;
+        display: block;
+    }
+    >a{
+        display: block;
+        margin-top: 8px;
+        text-align: center;
+        width: 200px;
+        margin-left: 50%;
+        transform: translateX(-50%);
+        transition: 0.2s;
+        text-decoration: underline;
+        &:hover{
+            color: var.$secondary-color;
+        }
+    }
+}
