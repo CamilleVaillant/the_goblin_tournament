@@ -1,0 +1,11 @@
+@use "../base/fonts";
+
+strong, h1, h2, h3, h4{
+    font-family: Medieval;
+    color: #8B2E1D    ;
+}
+
+a, p, span{
+    font-family: Alice;
+    color: green    ;
+}

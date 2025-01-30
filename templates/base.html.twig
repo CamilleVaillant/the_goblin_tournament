@@ -4,14 +4,32 @@
         <meta charset="UTF-8">
         <title>{% block title %}Welcome!{% endblock %}</title>
         <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">
-        {% block stylesheets %}
-        {% endblock %}
-
-        {% block javascripts %}
-            {% block importmap %}{{ importmap('app') }}{% endblock %}
-        {% endblock %}
+        <link rel="stylesheet" href="{{ asset("css/style.css") }}">
     </head>
     <body>
-        {% block body %}{% endblock %}
+        {% block header %}
+            <header>
+                <nav>
+                    <ul>
+                        <li><a class="{% if app.request.attributes.get('_route') == "app_home" %} active {% endif %}" href="{{ path("app_home") }}">Accueil</a></li>
+                        <li><a class="{% if app.request.attributes.get('_route') == "app_tournaments" %} active {% endif %}" href="{{ path("app_tournaments") }}">Les tournois</a></li>
+                        {# <li><a class="{% if app.request.attributes.get('_route') == "app_admin_panel" %} active {% endif %}" href="{{ path("app_admin_panel") }}">Panel Admin</a></li>
+                        <li><a class="{% if app.request.attributes.get('_route') == "app_login" %} active {% endif %}" href="{{ path("app_login") }}">Connexion</a></li>
+                        <li><a class="{% if app.request.attributes.get('_route') == "app_register" %} active {% endif %}" href="{{ path("app_register") }}">Inscription</a></li>
+                        <li><a class="{% if app.request.attributes.get('_route') == "app_logout" %} active {% endif %}" href="{{ path("app_logout") }}">Deconnection</a></li> #}
+                    </ul>
+                </nav>
+            </header>
+        {% endblock %}
+
+        {% block main %}
+            {# <p>public/dart-sass/sass public/scss/style.scss public/css/style.css --watch</p> #}
+        {% endblock %}
+
+        {% block footer %}
+            <footer>
+                <p>Fabriqué et mis en bouteille par la guilde des gobelins farceurs : Camille et Matthys</p>
+            </footer>
+        {% endblock %}
     </body>
 </html>

@@ -1,0 +1,22 @@
+@use "./../abstract/variable" as var;
+
+header{
+    nav{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: black;
+        ul{
+            display: flex;
+            li{
+                padding: 8px 32px;
+                a{
+                    color: white;
+                }
+                .active{
+                    color: var.$primary-color;
+                }
+            }
+        }
+    }
+}

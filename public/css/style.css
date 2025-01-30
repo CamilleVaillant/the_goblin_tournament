@@ -1,0 +1,86 @@
+* {
+  margin: 0px;
+  padding: 0px;
+  list-style: none;
+  text-decoration: none;
+}
+
+@font-face {
+  font-family: Alice;
+  src: url(../../fonts/Alice/Alice-Regular.ttf);
+}
+@font-face {
+  font-family: Medieval;
+  src: url(../../fonts/MedievalSharp/MedievalSharp-Regular.ttf);
+}
+strong, h1, h2, h3, h4 {
+  font-family: Medieval;
+  color: #8B2E1D;
+}
+
+a, p, span {
+  font-family: Alice;
+  color: green;
+}
+
+header nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: black;
+}
+header nav ul {
+  display: flex;
+}
+header nav ul li {
+  padding: 8px 32px;
+}
+header nav ul li a {
+  color: white;
+}
+header nav ul li .active {
+  color: lime;
+}
+
+#mainAccueil {
+  background-color: #D6BBA0;
+  background-image: url("https://www.transparenttextures.com/patterns/low-contrast-linen.png");
+  /* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
+}
+#mainAccueil h1 {
+  text-align: center;
+  padding: 32px;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+#mainAccueil #regles {
+  padding: 0px 32px;
+}
+#mainAccueil #regles h2 {
+  text-transform: uppercase;
+}
+#mainAccueil #regles ul li {
+  padding: 2px 16px;
+}
+#mainAccueil #regles ul li strong {
+  letter-spacing: 0.5px;
+}
+#mainAccueil #regles p {
+  padding: 8px 16px;
+}
+
+#mainTournois {
+  background-color: grey;
+  height: 80vh;
+}
+
+footer {
+  background-color: black;
+}
+footer p {
+  text-align: center;
+  padding: 8px;
+  color: green;
+}
+
+/*# sourceMappingURL=style.css.map */
