@@ -18,17 +18,18 @@ class TournamentType extends AbstractType
     {
         $builder
             ->add('name')
-            ->add('date', null, [
-                'widget' => 'single_text'
-            ])
+            // ->add('date', null, [
+            //     'widget' => 'single_text'
+            // ])
             ->add('nbrParticipant')
-            ->add('etat')
-            ->add('result')
+            // ->add('etat')
+            // ->add('result')
             ->add('type', EntityType::class, [
                 'class' => type::class,
                 'choice_label' => 'name',
             ])
             ->add('user', EntityType::class, [
+                "label" => "Ajouter des participants : ",
                 'class' => User::class,
                 'choice_label' => 'pseudo',
                 'multiple' => true,

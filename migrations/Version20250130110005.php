@@ -21,6 +21,8 @@ final class Version20250130110005 extends AbstractMigration
     {
         // this up() migration is auto-generated, please modify it to your needs
         $this->addSql('ALTER TABLE tournament CHANGE nbr_participant nbr_participant INT DEFAULT NULL, CHANGE etat etat INT DEFAULT NULL, CHANGE result result VARCHAR(255) DEFAULT NULL');
+        $this->addSql("INSERT INTO `user` (`id`, `name`, `roles`, `password`, `pseudo`) 
+            VALUES (1, 'Admin', '[\"ROLE_USER\", \"ROLE_ADMIN\"]', '$2y$13$oAwbiOl5T3ftrwJliyjzoeu.ybMDEx/xOuAobhlAgk42yM9UrA.WG', 'Le Surpuissant');");
     }
 
     public function down(Schema $schema): void

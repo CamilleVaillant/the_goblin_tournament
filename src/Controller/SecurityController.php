@@ -32,35 +32,22 @@ class SecurityController extends AbstractController
     #[Route(path: '/register', name: 'app_register')]
     public function register(Request $request,UserPasswordHasherInterface $passwordEncoder,EntityManagerInterface $entityManager,AuthenticationUtils $authenticationUtils): Response
     {
-        // Vérification si l'objet existe via l'injection de dependance
-        // Si injection de dependance = On est en Modification
-        // Sinon, on est un Creation et on créé l'objet
-        
         $user = new User;
-      
-        // Récupération du formulaire et association avec l'objet
         $form = $this->createForm(UserType::class,$user);
-
-        // Récupération des données POST du formulaire
         $form->handleRequest($request);
-        // Vérification si le formulaire est soumis et Valide
 
         if($form->isSubmitted() && $form->isValid()){
-            
             $user->setRoles(['ROLE_USER']);
             $user->setPassword(
                 $passwordEncoder->hashPassword($user,$form->get('password')->getData())
             );
-            // Persistance des données
             $entityManager->persist($user);
-            // Envoi en BDD
             $entityManager->flush();
 
-            // Redirection de l'utilisateur
             return $this->redirectToRoute('app_home');
         }
         return $this->render('security/register.html.twig', [
-          'userForm' => $form->createView(), //envoie du formulaire en VUE
+          'userForm' => $form->createView(),
         ]);
         
     }

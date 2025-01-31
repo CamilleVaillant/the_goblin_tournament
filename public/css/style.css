@@ -54,7 +54,6 @@ header nav ul li .active {
 #mainAccueil {
   background-color: #D6BBA0;
   background-image: url("https://www.transparenttextures.com/patterns/low-contrast-linen.png");
-  /* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
 }
 #mainAccueil h1 {
   text-align: center;
@@ -81,36 +80,79 @@ header nav ul li .active {
 #mainTournois {
   background-color: #D6BBA0;
   background-image: url("https://www.transparenttextures.com/patterns/low-contrast-linen.png");
-  text-align: center;
-  background-color: #D6BBA0;
 }
-#mainTournois form {
-  width: 60%;
-  margin: auto;
+#mainTournois h1 {
+  padding-top: 32px;
+  text-align: center;
+  font-size: 72px;
+  padding-bottom: 32px;
+}
+#mainTournois article {
+  border-bottom: #8B2E1D 4px solid;
+  border-top: #8B2E1D 4px solid;
+  background-color: rgba(171, 149, 128, 0.4745098039);
+  padding: 32px 64px;
   display: flex;
+  margin-top: 16px;
+}
+#mainTournois article img {
+  height: 250px;
+  border: solid 4px #8B2E1D;
+}
+#mainTournois article > div {
+  padding: 8px;
+}
+#mainTournois #tournamentAddModify h2 {
+  padding-top: 32px;
+  text-align: center;
+  font-size: 36px;
+  padding-bottom: 32px;
+}
+#mainTournois #tournamentAddModify form {
+  margin: auto;
+  width: 40%;
+}
+#mainTournois #tournamentAddModify form div {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
   flex-direction: column;
 }
-#mainTournois form label {
+#mainTournois #tournamentAddModify form div label {
+  display: block;
   font-size: 20px;
-  padding: 8px 128px;
+  padding: 8px;
   text-align: center;
 }
-#mainTournois form input {
+#mainTournois #tournamentAddModify form div input {
+  width: 100%;
   text-align: center;
   padding: 4px 16px;
-  margin: 0px 128px;
   border-radius: 4px;
   border: solid 2px black;
   font-family: Alice;
   font-size: 18px;
 }
-#mainTournois form button {
+#mainTournois #tournamentAddModify form div select {
+  width: 100%;
+  text-align: center;
+  padding: 4px 16px;
+  border-radius: 4px;
+  border: solid 2px black;
+  font-family: Alice;
+  font-size: 18px;
+}
+#mainTournois #tournamentAddModify form > div:nth-of-type(4) > div:nth-of-type(1) > div {
+  flex-direction: row;
+}
+#mainTournois #tournamentAddModify form button {
+  margin-left: 50%;
+  transform: translateX(-50%);
+  margin-top: 32px;
   font-size: 20px;
   font-family: Medieval;
   cursor: pointer;
-  width: 50%;
-  margin: auto;
-  margin-top: 32px;
   padding: 8px 16px;
   border-radius: 4px;
   border: solid 2px black;
@@ -119,43 +161,52 @@ header nav ul li .active {
   letter-spacing: 1px;
   transition: 0.2s;
 }
-#mainTournois form button:hover {
+#mainTournois #tournamentAddModify form button:hover {
   background-color: green;
   color: white;
 }
-#mainTournois article {
-  margin: 1rem 0;
+#mainTournois #btn_bloc {
   display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  width: 75vw;
-  height: 200px;
+  justify-content: start;
 }
-#mainTournois article > div {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  align-items: center;
-  width: 100%;
-  height: 100%;
+#mainTournois #btn_bloc a {
+  margin-left: 16px;
+  margin-top: 8px;
+  font-size: 20px;
+  font-family: Medieval;
+  cursor: pointer;
+  padding: 8px 16px;
+  border-radius: 4px;
+  border: solid 2px blue;
+  color: blue;
+  background-color: white;
+  font-weight: bold;
+  letter-spacing: 1px;
+  transition: 0.2s;
 }
-#mainTournois article > div .main_article {
-  width: 75%;
+#mainTournois #btn_bloc a:hover {
+  background-color: blue;
+  border: solid 2px rgb(0, 0, 145);
+  color: white;
 }
-#mainTournois article > div img {
-  width: 25%;
-  height: 100%;
-  object-fit: cover;
+#mainTournois #btn_bloc form button {
+  margin-left: 16px;
+  margin-top: 8px;
+  font-size: 20px;
+  font-family: Medieval;
+  cursor: pointer;
+  padding: 8px 16px;
+  border-radius: 4px;
+  border: solid 2px red;
+  color: red;
+  font-weight: bold;
+  letter-spacing: 1px;
+  transition: 0.2s;
 }
-#mainTournois article .btn_bloc {
-  display: flex;
-  flex-direction: row;
-  justify-content: margin-left;
-  align-items: center;
-}
-#mainTournois article .btn_bloc a, #mainTournois article .btn_bloc button {
-  margin-right: 1rem;
+#mainTournois #btn_bloc form button:hover {
+  background-color: red;
+  border: solid 2px rgb(117, 0, 0);
+  color: white;
 }
 
 #mainLogin {
@@ -299,6 +350,17 @@ header nav ul li .active {
 }
 #mainRegister > a:hover {
   color: #8B2E1D;
+}
+
+#mainHistorique {
+  background-color: #D6BBA0;
+  background-image: url("https://www.transparenttextures.com/patterns/low-contrast-linen.png");
+}
+#mainHistorique h1 {
+  text-align: center;
+  padding: 32px;
+  text-transform: uppercase;
+  font-weight: bold;
 }
 
 footer {

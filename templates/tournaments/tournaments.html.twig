@@ -5,46 +5,49 @@
 {% block main %}
     <main id="mainTournois">
 
-        <h2> {{ isModification ? 'Modifier un tournoi' :  'Ajouter un tournoi' }}</h2>
-        {{form_start(tournamentForm)}}
-            {{form_widget(tournamentForm)}}
-            <button>{{ isModification ? 'Modifier' :  'Ajouter'}}</button>
-        {{form_end(tournamentForm)}}
+        {% if is_granted("ROLE_ADMIN") %}
+        <div id="tournamentAddModify">
+            <h2> {{ isModification ? 'Modifier un tournoi' :  'Ajouter un tournoi' }}</h2>
+            {{form_start(tournamentForm)}}
+                {{ form_row(tournamentForm.name, {"label": "Entrez le nom du tournoi : ",})}}
+                {# {{ form_row(tournamentForm.date, {"label": "Entrez la date de creation du tournois : ",})}} #}
+                {{ form_row(tournamentForm.nbrParticipant, {"label": "Entrez le nombre de participants maximum : ",})}}
+                {# {{ form_row(tournamentForm.etat, {"label": "Entrez l'état du tournoi : ",})}} #}
+                {{ form_row(tournamentForm.type, {"label": "Choisiez le type de tournoi : ",})}}
+                {# {{ form_row(tournamentForm.result, {"label": "Resultat du tournoi : ",})}} #}
+                {{form_widget(tournamentForm)}}
+                <button>{{ isModification ? 'Modifier' :  'Ajouter'}}</button>
+            {{form_end(tournamentForm)}}
+        </div>
+        {% endif %}
 
-     
-
-
-        <h2>Tournois :</h2>
-            {% for tournament in tournament %}
-                <article>
-                    <div>
-                        <div class="main_article">
-                            <h3>{{tournament.name}}</h3>
-                            <p><strong>Crée le : </strong>{{tournament.date|date('d/m/y')}}</p>
-                            <p><strong>Nombre de Gobelin : </strong>{{tournament.nbrParticipant}}</p>
-                            <p><strong>Etat : </strong>{{tournament.etat}}</p>
-                            <p><strong>Style : </strong>{{tournament.type.name}}</p>
-                            <p><strong>Résultat : </strong>{{tournament.result}}</p>
-                            <p><strong>Participant : </strong>
-                            {% for user in tournament.user %}
-                                <span>{{user.pseudo}}</span>
-                            {% endfor %}</p>
-
-                            <div class="btn_bloc">
-                                <a href={{path('modify_tournaments',{'id':tournament.id})}}>modifier</a>
-                                <form method="POST" onsubmit="return confirm('Confirmer la suppression?')" action="{{ path('delete_tournament',{'id': tournament.id})}}">
-                                    <input type="hidden" name="_method" value="delete">
-                                    <input type="hidden" name="_token" value="{{csrf_token('SUP' ~ tournament.id)}}">
-                                    <button class="btn_suppr">Supprimer</button>
-                                </form>
-                            </div>
-                        </div>
-
-                        <img src={{asset('images/images/' ~ tournament.imageName )}} alt="image du tournoi">
-                    </div>
-                </article>
-            {% endfor %}
-       
-    
+        <h1>Les tournois : </h1>
+        {% for tournament in tournament %}
+            <article>
+                <img src={{asset('images/images/' ~ tournament.imageName )}} alt="image du tournoi">
+                <div>
+                    <h3>Tournois : {{tournament.name}}</h3>
+                    <p><strong>Crée le : </strong>{{tournament.date|date('d/m/y')}}</p>
+                    <p><strong>Nombre de gobelins participants : </strong>{{tournament.nbrParticipant}}</p>
+                    <p><strong>Participant : </strong>
+                    {% for user in tournament.user %}
+                        <p>"{{user.pseudo}}"</p>
+                    {% endfor %}</p>
+                    <p><strong>Style : </strong>{{tournament.type.name}}</p>
+                    <p><strong>Etat : </strong>{{tournament.etat}}</p>
+                    <p><strong>Résultat : </strong>{{tournament.result}}</p>
+                </div>
+            </article>
+            {% if is_granted("ROLE_ADMIN") %}
+                <div id="btn_bloc">
+                    <a href={{path('modify_tournaments',{'id':tournament.id})}}>modifier</a>
+                    <form method="POST" onsubmit="return confirm('Confirmer la suppression?')" action="{{ path('delete_tournament',{'id': tournament.id})}}">
+                        <input type="hidden" name="_method" value="delete">
+                        <input type="hidden" name="_token" value="{{csrf_token('SUP' ~ tournament.id)}}">
+                        <button class="btn_suppr">Supprimer</button>
+                    </form>
+                </div>
+            {% endif %}
+        {% endfor %}
     </main>
 {% endblock %}

@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Tournament;
 use App\Form\TournamentType;
 use App\Repository\TournamentRepository;
+use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -28,13 +29,18 @@ final class TournamentsController extends AbstractController{
                 $this->addFlash('error', 'Le nombre de participants sélectionnés dépasse la limite.');
                 return $this->redirectToRoute('modify_tournaments', ['id' => $tournament->getId()]);
             }
+            $date = new DateTime();
+            $tournament->setDate($date);
+            $tournament->setEtat(0);
+
             $entityManager->persist($tournament);
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_home');
+            return $this->redirectToRoute('app_tournaments');
         }
+
         $tournamentAll = $repository->findAll();
-        
+
         return $this->render('tournaments/tournaments.html.twig', [
             'tournament' => $tournamentAll,
             'tournamentForm' => $form->createView(),
@@ -48,9 +54,10 @@ final class TournamentsController extends AbstractController{
         if($this->isCsrfTokenValid('SUP'.$tournament->getId(),$request->get('_token'))){
             $entityManager->remove($tournament);
             $entityManager->flush();
+            
             $this->addFlash('success','La suppression à été effectuée');
-            return $this->redirectToRoute('app_home');
 
+            return $this->redirectToRoute('app_tournaments');
         }
     }
 }

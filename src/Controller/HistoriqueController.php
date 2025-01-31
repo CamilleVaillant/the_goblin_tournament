@@ -2,16 +2,17 @@
 
 namespace App\Controller;
 
-use App\Repository\TournamentRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
-final class HomeController extends AbstractController{
-    #[Route('/', name: 'app_home')]
+final class HistoriqueController extends AbstractController
+{
+    #[Route('/historique', name: 'app_historique')]
     public function index(): Response
     {
-        return $this->render('home/home.html.twig', [
+        return $this->render('historique/historique.html.twig', [
+            'controller_name' => 'HistoriqueController',
         ]);
     }
 }
