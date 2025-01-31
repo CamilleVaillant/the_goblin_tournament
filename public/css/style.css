@@ -81,11 +81,54 @@ header nav ul li .active {
 #mainTournois {
   background-color: #D6BBA0;
   background-image: url("https://www.transparenttextures.com/patterns/low-contrast-linen.png");
+  text-align: center;
   background-color: #D6BBA0;
-  height: 80vh;
+}
+#mainTournois form {
+  width: 60%;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+}
+#mainTournois form label {
+  font-size: 20px;
+  padding: 8px 128px;
+  text-align: center;
+}
+#mainTournois form input {
+  text-align: center;
+  padding: 4px 16px;
+  margin: 0px 128px;
+  border-radius: 4px;
+  border: solid 2px black;
+  font-family: Alice;
+  font-size: 18px;
+}
+#mainTournois form button {
+  font-size: 20px;
+  font-family: Medieval;
+  cursor: pointer;
+  width: 50%;
+  margin: auto;
+  margin-top: 32px;
+  padding: 8px 16px;
+  border-radius: 4px;
+  border: solid 2px black;
+  color: green;
+  font-weight: bold;
+  letter-spacing: 1px;
+  transition: 0.2s;
+}
+#mainTournois form button:hover {
+  background-color: green;
+  color: white;
 }
 #mainTournois article {
   margin: 1rem 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
   width: 75vw;
   height: 200px;
 }

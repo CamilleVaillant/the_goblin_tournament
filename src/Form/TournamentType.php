@@ -26,13 +26,14 @@ class TournamentType extends AbstractType
             ->add('result')
             ->add('type', EntityType::class, [
                 'class' => type::class,
-'choice_label' => 'name',
+                'choice_label' => 'name',
             ])
-//             ->add('user', EntityType::class, [
-//                 'class' => User::class,
-// 'choice_label' => 'id',
-// 'multiple' => true,
-//             ])
+            ->add('user', EntityType::class, [
+                'class' => User::class,
+                'choice_label' => 'pseudo',
+                'multiple' => true,
+                'expanded' => true,
+            ])
             ->add('imageFile', FileType::class,[ //Champ de fichier
                 'constraints' => [
                     new File([

@@ -25,6 +25,10 @@
                             <p><strong>Etat : </strong>{{tournament.etat}}</p>
                             <p><strong>Style : </strong>{{tournament.type.name}}</p>
                             <p><strong>Résultat : </strong>{{tournament.result}}</p>
+                            <p><strong>Participant : </strong>
+                            {% for user in tournament.user %}
+                                <span>{{user.pseudo}}</span>
+                            {% endfor %}</p>
 
                             <div class="btn_bloc">
                                 <a href={{path('modify_tournaments',{'id':tournament.id})}}>modifier</a>
