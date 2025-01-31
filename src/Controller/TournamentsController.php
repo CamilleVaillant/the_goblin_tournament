@@ -41,9 +41,6 @@ final class TournamentsController extends AbstractController{
     #[Route('/tournament/remove/{id}', name: 'delete_tournament')]
     public function remove(Tournament $tournament, Request $request, EntityManagerInterface $entityManager): Response
     {
-        
-        
-
         if($this->isCsrfTokenValid('SUP'.$tournament->getId(),$request->get('_token'))){
             $entityManager->remove($tournament);
             $entityManager->flush();
