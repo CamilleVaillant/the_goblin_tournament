@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Combat;
 use App\Entity\Tournament;
 use App\Form\TournamentType;
 use App\Repository\TournamentRepository;
@@ -60,4 +61,76 @@ final class TournamentsController extends AbstractController{
             return $this->redirectToRoute('app_tournaments');
         }
     }
+
+    public function generateCombat(Tournament $tournament, EntityManagerInterface $entityManager)
+    {
+        $players = $tournament->getUser(); // Récupération des joueurs
+        
+        if (count($players) < 2) {
+            throw new \Exception("Il faut au moins 2 joueurs pour générer des matchs !");
+        }
+
+        // Supprimer les anciens combat
+        foreach ($tournament->getCombat() as $combat) {
+            $entityManager->remove($combat);
+        }
+
+        // Génération selon le type de tournoi
+        if ($tournament->getType()->getName() === 'Élimination directe') {
+            shuffle($player);
+            $round = 1;
+            for ($i = 0; $i < count($players); $i += 2) {
+                if (isset($players[$i + 1])) {
+                    $combat = new Combat();
+                    $combat->setPlayer1($players[$i]);
+                    $combat->setPlayer2($players[$i + 1]);
+                    $combat->setTournament($tournament);
+                    $combat->setRound($round);
+                    $entityManager->persist($combat);
+                }
+            }
+        } else if ($tournament->getType()->getName() === 'Ligue') {
+            $round = 1;
+            foreach ($players as $player1) {
+                foreach ($players as $player2) {
+                    if ($player1 !== $player2) {
+                        $combat = new Combat();
+                        $combat->setPlayer1($player1);
+                        $combat->setPlayer2($player2);
+                        $combat->setTournament($tournament);
+                        $combat->setRound($round);
+                        $entityManager->persist($combat);
+                    }
+                }
+                $round++;
+            }
+        }
+
+        $entityManager->flush();
+    }
+
+    #[Route('/tournament/{id}/generate-combat', name: 'generate_combat')]
+    public function generate(Tournament $tournament, EntityManagerInterface $entityManager): Response
+    {
+        $this->generateCombat($tournament, $entityManager);
+
+        $this->addFlash('success', 'Les combat ont été générés avec succès !');
+        return $this->redirectToRoute('modify_tournaments', ['id' => $tournament->getId()]);
+    }
+
+    #[Route('/combat/update/{id}', name: 'update_combat', methods: ['POST'])]
+    public function updateMatch(Request $request, Combat $combat, EntityManagerInterface $entityManager)
+    {
+        $score = $request->request->get('score');
+        if ($score) {
+            $combat->setScore($score);
+            $entityManager->flush();
+            $this->addFlash('success', 'Score mis à jour !');
+        }
+
+        return $this->redirectToRoute('modify_tournaments', ['id' => $combat->getTournament()->getId()]);
+    }
+
+
+
 }

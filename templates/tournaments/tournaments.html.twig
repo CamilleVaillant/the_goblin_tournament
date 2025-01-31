@@ -48,6 +48,39 @@
                     </form>
                 </div>
             {% endif %}
+            {# <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Round</th>
+                            <th>Joueur 1</th>
+                            <th>Joueur 2</th>
+                            <th>Score</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% if tournament.combat is not empty %}
+                            {% for combat in tournament.combat %}
+                                <tr>
+                                    <td>{{ combat.round }}</td>
+                                    <td>{{ combat.player1.pseudo }}</td>
+                                    <td>{{ combat.player2.pseudo }}</td>
+                                    <td>{{ combat.score ?: 'À jouer' }}</td>
+                                    <td>
+                                        <form action="{{ path('update_combat', {'id': combat.id}) }}" method="post">
+                                            <input type="text" name="score" placeholder="Ex: 2-1">
+                                            <button type="submit">Enregistrer</button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        {% else %}
+                            <tr>
+                                <td colspan="4">Aucun combat à afficher</td>
+                            </tr>
+                        {% endif %}
+                    </tbody>
+                </table> #}
         {% endfor %}
     </main>
 {% endblock %}

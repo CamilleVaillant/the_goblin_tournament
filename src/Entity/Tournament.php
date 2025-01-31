@@ -48,6 +48,9 @@ class Tournament
     #[ORM\Column(nullable: true)]
     private ?DateTimeImmutable $updatedAt = null;
 
+    #[ORM\OneToMany(mappedBy: "tournament", targetEntity: Combat::class, cascade: ["persist", "remove"])]
+    private Collection $combat;
+
     /**
      * @var Collection<int, User>
      */
@@ -57,12 +60,19 @@ class Tournament
     /**
      * @var Collection<int, User>
      */
-   
+
+    
+    
+
+    public function getCombat(): collection
+    {
+    return $this->combat;
+    }
 
     public function __construct()
     {
         $this->user = new ArrayCollection();
-        
+        $this->combat = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -189,6 +199,8 @@ class Tournament
     {
         return $this->imageName;
     }
+
+    
     /**
      * @return Collection<int, User>
      */
